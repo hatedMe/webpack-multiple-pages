@@ -17,7 +17,7 @@ ES6、ES7、ES8代码好用能不能给后台使用？
 ## 使用 
 
 克隆项目
-```git clone git```
+```git clone https://github.com/hatedMe/webpack-multiple-pages.git```
 
 安装npm依赖包
 ```npm install```
