@@ -4,6 +4,12 @@
 
 
 
-import { title }  from './index'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
-document.title = title
+
+import { $ } from './vendors'
+
+
+
+
+

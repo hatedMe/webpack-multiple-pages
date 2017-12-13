@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const path = require('path');
 const opn = require('opn');
 
-const webpackConfig = require('./webpack.dev.conf');
+const webpackConfig = require('./webpack.dev.config');
 
 const compiler = webpack(webpackConfig);
 const app = express();
@@ -24,8 +24,8 @@ var hotMiddleware = require('webpack-hot-middleware')(compiler, {
 
 
 // 当tml-webpack-plugin template更改之后，强制刷新浏览器
-compiler.plugin('compilation', function (compilation) {
-    compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
+compiler.plugin('compilation', function(compilation) {
+    compilation.plugin('html-webpack-plugin-after-emit', function(data, cb) {
         hotMiddleware.publish({
             action: 'reload'
         })
@@ -36,7 +36,38 @@ compiler.plugin('compilation', function (compilation) {
 app.use(devMiddleware);
 
 app.use(hotMiddleware);
-//app.use(express.static('../dist'))
+
+var staticPath = path.posix.join('/', 'static'); // express 静态文件托管
+app.use(staticPath, express.static('./static'));
+
+
+
+
+//  设置路由 ： 例如 /a.html ==> /a
+app.get('/:viewname?', function(req, res, next) {
+
+    var viewname = req.params.viewname ?
+        req.params.viewname + '.html' :
+        'index.html';
+
+    var filepath = path.join(compiler.outputPath, viewname);
+
+    // 使用webpack提供的outputFileSystem
+    compiler.outputFileSystem.readFile(filepath, function(err, result) {
+        if (err) {
+            // something error
+            return next(err);
+        }
+        res.set('content-type', 'text/html');
+        res.send(result);
+        res.end();
+    });
+});
+
+
+
+
+
 
 app.listen(4000, () => {
     console.log("成功启动：localhost:" + 4000)
