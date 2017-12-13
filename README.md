@@ -1,31 +1,36 @@
 ## 解决痛点 ：
-公司处于发展阶段，前后端结构不分离，项目需要后端渲染，SPA不给用。页面模板不好出。
-老板东看一些布局，西看一些布局。能否快速修改模板以供版本迭代？
-JS不压缩影响加载速度？老式项目需要jQuery作为底层，如何全局部署供后台使用
-针对迭代版本修改css能否快速进行压缩打包？
-能否将js分为底层包、业务包、逻辑包分层打包实践？
-能否将模板分为类似SPA组件式开发？
-ES6、ES7、ES8代码好用能不能给后台使用？
+
+
+公司处于发展阶段，前后端结构不分离，项目需要后端渲染，SPA不给用。页面模板不好出。 </br>
+老板东看一些布局，西看一些布局。能否快速修改模板以供版本迭代？ </br>
+JS不压缩影响加载速度？老式项目需要jQuery作为底层，如何全局部署供后台使用  </br>
+针对迭代版本修改css能否快速进行压缩打包？  </br>
+能否将js分为底层包、业务包、逻辑包分层打包实践？  </br>
+能否将模板分为类似SPA组件式开发？ </br>
+ES6、ES7、ES8代码好用能不能给后台使用？ </br>
 能否开发就打包解决浏览器缓存？实现修改即用？
 
+
+
+
 ## 说明
-只是主要解决不在SPA的环境，利用组件出渲染模板
-脚手架参考vue-cli借鉴修改
-底层调用bootstrap样式、jqueryDOM、让全局能访问到$ 故使将$挂载到window上面
-使用express做开发环境实现热加载以便后续使用跨域请求代理
+只是主要解决不在SPA的环境，利用组件出渲染模板 <br />
+脚手架参考vue-cli借鉴修改 <br />
+底层调用bootstrap样式、jqueryDOM、让全局能访问到$ 故使将$挂载到window上面 <br />
+使用express做开发环境实现热加载以便后续使用跨域请求代理 <br />
 
 ## 使用 
 
-克隆项目
+克隆项目 <br />
 ```git clone https://github.com/hatedMe/webpack-multiple-pages.git```
 
-安装npm依赖包
+安装npm依赖包 <br />
 ```npm install```
 
-开发环境 ===> 浏览器打开 ```localhost:4000```
+开发环境 ===> 浏览器打开 ```localhost:4000``` <br />
 ```npm run dev```
 
-打包部署 ===> 根目录下dist为打包文件
+打包部署 ===> 根目录下dist为打包文件 <br />
 ```npm run build```
 
 ## 项目目录
@@ -56,10 +61,10 @@ ES6、ES7、ES8代码好用能不能给后台使用？
 使用技术栈：webpack + babel + less + ejs + express + node 
 
 参考 :
-[webpack](http://webpack.github.io/docs/)
-[less](http://lesscss.org/)
-[vue-cli](https://github.com/vuejs/vue-cli)
-[babel](http://babeljs.io/)
-[express](https://github.com/expressjs/express)
-[html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin)
+[webpack](http://webpack.github.io/docs/) <br />
+[less](http://lesscss.org/) <br />
+[vue-cli](https://github.com/vuejs/vue-cli) <br />
+[babel](http://babeljs.io/) <br />
+[express](https://github.com/expressjs/express) <br />
+[html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) <br />
 
