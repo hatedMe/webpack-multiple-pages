@@ -1,5 +1,7 @@
 
 
-document.title = 'asfsgf'
+
+
+console.log( '我是首页' );
 
 

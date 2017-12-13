@@ -32,6 +32,13 @@ module.exports = {
                 })
             },
             {
+                test: /\.less$/,
+                loader: ExtractTextPlugin.extract({
+                    use: [{loader:'css-loader'},{loader:'less-loader'}],
+                    fallback: "style-loader"
+                })
+            },
+            {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
@@ -60,7 +67,7 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.vue', '.json', '.ejs'],
         alias: {
-            '@' : 
+            '@': resolve('src')
         }
     },
 }

@@ -47,6 +47,7 @@ const htmlConfig = () => {
             new HtmlWebpackPlugin({
                 filename: `./${attr}.html`,
                 template: `${HtmlTpl[attr]}`,
+                chunks: ['vendors', 'app',`${attr}`],
                 inject: true
             })
         )
@@ -60,6 +61,7 @@ const htmlConfig = () => {
 
 
 module.exports = merge(baseWebpackConfig,{
+    entry : Entry,
     devtool: '#cheap-module-eval-source-map',
     output: {
         path: path.resolve(__dirname, '../dist'),
