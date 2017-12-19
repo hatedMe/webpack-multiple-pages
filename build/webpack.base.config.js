@@ -28,14 +28,16 @@ module.exports = {
             {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract({
-                    use: ['css-loader']
+                    use: ['css-loader'],
+                    publicPath: '../../'
                 })
             },
             {
                 test: /\.less$/,
                 loader: ExtractTextPlugin.extract({
                     use: [{loader:'css-loader'},{loader:'less-loader'}],
-                    fallback: "style-loader"
+                    fallback: "style-loader",
+                    publicPath: '../../'
                 })
             },
             {
