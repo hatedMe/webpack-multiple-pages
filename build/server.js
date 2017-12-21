@@ -37,6 +37,8 @@ app.use(devMiddleware);
 
 app.use(hotMiddleware);
 
+
+
 var staticPath = path.posix.join('/', 'static'); // express 静态文件托管
 app.use(staticPath, express.static('./static'));
 
@@ -45,10 +47,14 @@ app.use(staticPath, express.static('./static'));
 
 //  设置路由 ： 例如 /a.html ==> /a
 app.get('/:viewname?', function(req, res, next) {
-
-    var viewname = req.params.viewname ?
-        req.params.viewname + '.html' :
+    let viewname = req.params.viewname;
+    if( viewname == 'favicon.ico'  ){ 
+        return next();
+    }else{
+        viewname = req.params.viewname ? 
+        req.params.viewname + '.html' : 
         'index.html';
+    }
 
     var filepath = path.join(compiler.outputPath, viewname);
 
@@ -63,9 +69,6 @@ app.get('/:viewname?', function(req, res, next) {
         res.end();
     });
 });
-
-
-
 
 
 

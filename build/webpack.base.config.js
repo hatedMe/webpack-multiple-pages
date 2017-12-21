@@ -45,7 +45,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: 'static/img/[name].[ext]'
+                    name: 'static/img/[name].[ext]',
                 }
             },
             {
@@ -69,7 +69,8 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.vue', '.json', '.ejs'],
         alias: {
-            '@': resolve('src')
+            '@': resolve('src'),
+            '^': resolve('static')
         }
     },
 }

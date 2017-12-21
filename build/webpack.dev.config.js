@@ -23,17 +23,12 @@ function getEntry(globPath) {
     glob.sync(globPath).forEach(function(entry) {
         basename = path.basename(entry, path.extname(entry));
         tmp = entry.split('/').splice(-3);
-        
         pathname = tmp.splice(0, 1) + '/' + basename; // 正确输出js和html的路径
-        console.log( basename );
         entries[basename] = entry;
     });
     return entries;
 }
 
-
-
-//console.log( getEntry('./src/views/**/*.ejs').map(  ) );
 
 
 const Entry = getEntry('./src/views/**/*.js');
@@ -42,7 +37,6 @@ const htmlConfig = () => {
     let config = [];
 
     for( let attr in HtmlTpl ){
-        console.log( attr , '=====>', HtmlTpl[attr]  );
         config.push(
             new HtmlWebpackPlugin({
                 filename: `./${attr}.html`,
@@ -71,18 +65,8 @@ module.exports = merge(baseWebpackConfig,{
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
-        // new HtmlWebpackPlugin({
-        //     filename: './index.html',
-        //     template: 'index.ejs',
-        //     inject: true
-        // }),
-        // new HtmlWebpackPlugin({
-        //     filename: './about.html',
-        //     template: 'about.ejs',
-        //     inject: true
-        // }),
         new ExtractTextPlugin({
-            filename: './static/css/[name].css' //  ./css/[name].[contenthash].css
+            filename: './static/css/[name].css' 
         }),
         new FriendlyErrorsPlugin()
     ].concat( htmlConfig() )

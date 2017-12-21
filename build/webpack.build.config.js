@@ -11,34 +11,6 @@ const merge = require('webpack-merge');
 const baseWebpackConfig = require('./webpack.base.config');
 
 
-// var htmlRoot = glob.sync('./src/views/**/*.ejs')
-//     .map((item, i, arr) => item.split('/')[arr.length])
-//     .map(function(item) {
-//         return new HtmlWebpackPlugin({
-//             filename: `./${item}.html`,
-//             template: `./src/views/${item}/${item}.ejs`,
-//             inject: true,
-//             minify: {
-//                 removeComments: true, //删除注释
-//                 collapseWhitespace: false, // 压缩
-//                 removeAttributeQuotes: false // 去掉路径引号
-//                 // more options:
-//                 // https://github.com/kangax/html-minifier#options-quick-reference
-//             },
-//             // necessary to consistently work with multiple chunks via CommonsChunkPlugin
-//             chunksSortMode: 'dependency',
-//             chunks: ['vendors', 'index']
-//         });
-//     });
-
-
-// Object.keys(baseWebpackConfig.entry).forEach(function (name) {
-//     baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
-// })
-
-
-
-
 function getEntry(globPath) {
     var entries = {},
         basename, tmp, pathname;
@@ -48,15 +20,11 @@ function getEntry(globPath) {
         tmp = entry.split('/').splice(-3);
         
         pathname = tmp.splice(0, 1) + '/' + basename; // 正确输出js和html的路径
-        console.log( basename );
         entries[basename] = entry;
     });
     return entries;
 }
 
-
-
-//console.log( getEntry('./src/views/**/*.ejs').map(  ) );
 
 
 const Entry = getEntry('./src/views/**/*.js');
@@ -146,20 +114,6 @@ module.exports = merge(baseWebpackConfig, {
 
 
         `),
-        // new HtmlWebpackPlugin({
-        //     filename: './index.html',
-        //     template: 'index.ejs',
-        //     inject: true,
-        //     minify: {
-        //         removeComments: true, //删除注释
-        //         collapseWhitespace: false, // 压缩
-        //         removeAttributeQuotes: false // 去掉路径引号
-        //         // more options:
-        //         // https://github.com/kangax/html-minifier#options-quick-reference
-        //     },
-        //     // necessary to consistently work with multiple chunks via CommonsChunkPlugin
-        //     chunksSortMode: 'dependency'
-        // }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendors',
             minChunks: function(module, count) {
@@ -178,8 +132,8 @@ module.exports = merge(baseWebpackConfig, {
             to: 'static',
             ignore: ['.*']
         }])
-    ].concat( htmlConfig() ), //.concat(htmls)
+    ].concat( htmlConfig() ), 
     externals: {
-        //'jquery':'window.jQuery'
+
     }
 })
