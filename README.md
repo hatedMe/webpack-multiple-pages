@@ -60,7 +60,7 @@ ES6、ES7、ES8代码好用能不能给后台使用？ </br>
 ## 最后
 使用技术栈：webpack + babel + less + ejs + express + node 
 
-参考 :
+参考 :<br />
 [webpack](http://webpack.github.io/docs/) <br />
 [less](http://lesscss.org/) <br />
 [vue-cli](https://github.com/vuejs/vue-cli) <br />
