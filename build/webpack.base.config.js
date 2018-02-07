@@ -1,15 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+const merge = require('webpack-merge');
+const cssLoader = require('./loader.config.js');
 
 function resolve(dir) {
     return path.join(__dirname, '..', dir)
 }
 
-
-
-module.exports = {
+module.exports = merge(cssLoader,{
     entry: {
         app: './src/main.js',
         vendors: ['./src/vendors.js'],
@@ -24,21 +23,6 @@ module.exports = {
                 test: /\.ejs$/,
                 exclude: /node_modules/,
                 use: ['ejs-loader']
-            },
-            {
-                test: /\.css$/,
-                loader: ExtractTextPlugin.extract({
-                    use: ['css-loader'],
-                    publicPath: '../../'
-                })
-            },
-            {
-                test: /\.less$/,
-                loader: ExtractTextPlugin.extract({
-                    use: [{loader:'css-loader'},{loader:'less-loader'}],
-                    fallback: "style-loader",
-                    publicPath: '../../'
-                })
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -73,4 +57,4 @@ module.exports = {
             '^': resolve('static')
         }
     },
-}
+})

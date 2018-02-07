@@ -65,8 +65,18 @@ module.exports = merge(baseWebpackConfig,{
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
+        // new HtmlWebpackPlugin({
+        //     filename: './index.html',
+        //     template: 'index.ejs',
+        //     inject: true
+        // }),
+        // new HtmlWebpackPlugin({
+        //     filename: './about.html',
+        //     template: 'about.ejs',
+        //     inject: true
+        // }),
         new ExtractTextPlugin({
-            filename: './static/css/[name].css' 
+            filename: './static/css/[name].css' //  ./css/[name].[contenthash].css
         }),
         new FriendlyErrorsPlugin()
     ].concat( htmlConfig() )

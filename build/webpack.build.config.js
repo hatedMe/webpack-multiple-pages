@@ -40,7 +40,7 @@ const htmlConfig = () => {
                 inject: true,
                 minify: {
                     removeComments: true, //删除注释
-                    collapseWhitespace: false, // 压缩
+                    collapseWhitespace: true, // 压缩
                     removeAttributeQuotes: false // 去掉路径引号
                     // more options:
                     // https://github.com/kangax/html-minifier#options-quick-reference
@@ -55,7 +55,6 @@ const htmlConfig = () => {
     return config;
 }
 
-console.log(htmlConfig() );
 module.exports = merge(baseWebpackConfig, {
     entry : Entry,
     output: {
@@ -110,9 +109,6 @@ module.exports = merge(baseWebpackConfig, {
                 中数科技有限公司版权所有，翻版必究
                 
                 ${ new Date }
-
-
-
         `),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendors',
@@ -132,8 +128,7 @@ module.exports = merge(baseWebpackConfig, {
             to: 'static',
             ignore: ['.*']
         }])
-    ].concat( htmlConfig() ), 
+    ].concat( htmlConfig() ), //.concat(htmls)
     externals: {
-
     }
 })

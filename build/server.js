@@ -5,6 +5,8 @@ const opn = require('opn');
 
 const webpackConfig = require('./webpack.dev.config');
 
+var port = 4000;
+
 const compiler = webpack(webpackConfig);
 const app = express();
 
@@ -72,6 +74,9 @@ app.get('/:viewname?', function(req, res, next) {
 
 
 
-app.listen(4000, () => {
-    console.log("成功启动：localhost:" + 4000)
+
+
+
+app.listen(port, () => {
+    console.log("成功启动：localhost:" + port)
 });
